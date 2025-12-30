@@ -1,0 +1,24 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Thalos Prime Med v1</title>
+
+  <!-- Tailwind (CDN) -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- Icons -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+
+  <link rel="stylesheet" href="assets/styles.css" />
+</head>
+<body class="bg-[#05070a] text-slate-200 font-sans">
+
+  <div id="app" class="min-h-screen flex flex-col"></div>
+
+  <!-- Core modules (ES modules) -->
+  <script type="module" src="./src/main.js"></script>
+
+</body>
+</html>
