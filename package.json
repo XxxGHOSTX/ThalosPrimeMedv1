@@ -1,0 +1,15 @@
+{
+  "name": "thalos-prime",
+  "version": "1.0.0",
+  "description": "Thalos Prime v1 — Node + TypeScript starter (pnpm)",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "scripts": {
+    "dev": "ts-node-dev --respawn --transpile-only src/index.ts",
+    "build": "tsc -p tsconfig.build.json",
+    "start": "node dist/index.js",
+    "test": "vitest"
+  },
+  "author": "XxxGHOSTX",
+  "license": "MIT"
+}
