@@ -105,6 +105,13 @@ fi
 # Step 2: Checkout main and create web-deploy branch
 print_header "Step 2: Branch Setup"
 
+# Configure git if not configured
+if ! git config user.email >/dev/null 2>&1; then
+    git config user.email "deploy@thalosprime.local"
+    git config user.name "Thalos Prime Deploy"
+    print_info "Configured git user"
+fi
+
 # Fetch latest changes
 git fetch origin 2>/dev/null || true
 
