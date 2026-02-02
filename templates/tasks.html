@@ -1,0 +1,37 @@
+{% extends "base.html" %}
+
+{% block title %}All Tasks - Thalos Prime{% endblock %}
+
+{% block content %}
+<div style="margin-bottom: 20px;">
+    <h2>All Tasks</h2>
+    <a href="/" class="btn" style="margin-top: 15px;">← Back to Home</a>
+</div>
+
+{% if tasks %}
+    <div style="margin-top: 30px;">
+        {% for task in tasks %}
+        <div style="background: #f8f9fa; padding: 15px; border-radius: 5px; margin-bottom: 15px; border-left: 4px solid #667eea;">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px;">
+                <strong>{{ task.intent[:100] }}{% if task.intent|length > 100 %}...{% endif %}</strong>
+                <span class="status-badge status-{{ task.status.value }}">{{ task.status.value }}</span>
+            </div>
+            <p style="font-size: 0.9rem; color: #6c757d; margin-bottom: 10px;">
+                <strong>ID:</strong> {{ task.id }}<br>
+                <strong>Created:</strong> {{ task.created_at.strftime("%Y-%m-%d %H:%M:%S") }}<br>
+                <strong>Updated:</strong> {{ task.updated_at.strftime("%Y-%m-%d %H:%M:%S") }}
+            </p>
+            {% if task.result %}
+                <p style="margin-bottom: 10px;"><strong>Result:</strong> {{ task.result[:150] }}{% if task.result|length > 150 %}...{% endif %}</p>
+            {% endif %}
+            {% if task.error %}
+                <p style="color: #dc3545; margin-bottom: 10px;"><strong>Error:</strong> {{ task.error }}</p>
+            {% endif %}
+            <a href="/tasks/{{ task.id }}" class="btn" style="padding: 8px 16px; font-size: 0.9rem;">View Full Details</a>
+        </div>
+        {% endfor %}
+    </div>
+{% else %}
+    <p style="margin-top: 30px; color: #6c757d;">No tasks yet.</p>
+{% endif %}
+{% endblock %}

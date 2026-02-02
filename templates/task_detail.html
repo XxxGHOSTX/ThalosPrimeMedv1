@@ -1,0 +1,62 @@
+{% extends "base.html" %}
+
+{% block title %}Task {{ task.id }} - Thalos Prime{% endblock %}
+
+{% block content %}
+<div style="margin-bottom: 30px;">
+    <h2>Task Details</h2>
+    <a href="/tasks" class="btn" style="margin-top: 15px; margin-right: 10px;">← Back to Tasks</a>
+    <a href="/" class="btn" style="margin-top: 15px;">← Home</a>
+</div>
+
+<div style="background: #f8f9fa; padding: 25px; border-radius: 5px; border-left: 4px solid #667eea;">
+    <div style="margin-bottom: 20px;">
+        <h3 style="display: inline-block; margin-right: 15px;">Status:</h3>
+        <span class="status-badge status-{{ task.status.value }}">{{ task.status.value }}</span>
+    </div>
+    
+    <div style="margin-bottom: 20px;">
+        <h3>Task ID</h3>
+        <p style="font-family: monospace; background: white; padding: 10px; border-radius: 3px; margin-top: 5px;">{{ task.id }}</p>
+    </div>
+    
+    <div style="margin-bottom: 20px;">
+        <h3>Intent</h3>
+        <p style="background: white; padding: 15px; border-radius: 3px; margin-top: 5px; white-space: pre-wrap;">{{ task.intent }}</p>
+    </div>
+    
+    {% if task.result %}
+    <div style="margin-bottom: 20px;">
+        <h3>Result</h3>
+        <p style="background: white; padding: 15px; border-radius: 3px; margin-top: 5px; white-space: pre-wrap;">{{ task.result }}</p>
+    </div>
+    {% endif %}
+    
+    {% if task.error %}
+    <div style="margin-bottom: 20px;">
+        <h3>Error</h3>
+        <p style="background: #fff5f5; color: #dc3545; padding: 15px; border-radius: 3px; margin-top: 5px; white-space: pre-wrap;">{{ task.error }}</p>
+    </div>
+    {% endif %}
+    
+    <div style="margin-bottom: 20px;">
+        <h3>Timeline</h3>
+        <p><strong>Created:</strong> {{ task.created_at.strftime("%Y-%m-%d %H:%M:%S") }}</p>
+        <p><strong>Updated:</strong> {{ task.updated_at.strftime("%Y-%m-%d %H:%M:%S") }}</p>
+    </div>
+    
+    {% if task.metadata %}
+    <div style="margin-bottom: 20px;">
+        <h3>Metadata</h3>
+        <pre style="background: white; padding: 15px; border-radius: 3px; margin-top: 5px; overflow-x: auto;">{{ task.metadata }}</pre>
+    </div>
+    {% endif %}
+</div>
+
+{% if task.status.value == "pending" or task.status.value == "running" %}
+<div style="margin-top: 30px; padding: 15px; background: #fff3cd; border-radius: 5px;">
+    <p><strong>Note:</strong> This task is currently {{ task.status.value }}. Refresh the page to see updates.</p>
+    <button onclick="location.reload()" class="btn" style="margin-top: 10px;">Refresh Page</button>
+</div>
+{% endif %}
+{% endblock %}
